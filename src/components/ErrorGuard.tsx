@@ -1,7 +1,4 @@
 import React from 'react'
-import styled from 'styled-components'
-import { color } from '../styles'
-
 
 export class ErrorGuard extends React.Component<
     {
@@ -15,7 +12,6 @@ export class ErrorGuard extends React.Component<
     }
 
     static getDerivedStateFromError(error: Error): { error: Error } {
-        console.log('error')
         return { error }
     }
 
@@ -23,14 +19,8 @@ export class ErrorGuard extends React.Component<
         const { error } = this.state
         const { children } = this.props
         if (error) {
-            return <div>has error</div>
+            return <div>something went wrong</div>
         }
         return children
     }
 }
-
-const Container = styled.div`
-    width: 100%;
-    height: 100%;
-    background-color: ${color.background.content};
-`

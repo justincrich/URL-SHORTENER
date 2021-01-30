@@ -7,7 +7,6 @@ import { store } from './services'
 import { ThemeProvider } from './styles/ThemeProvider'
 import { theme } from './styles/theme'
 import { reset } from './styles/reset'
-import { Router } from './router'
 import { ErrorGuard } from './components/ErrorGuard'
 
 const GlobalStyle = createGlobalStyle`
@@ -27,7 +26,7 @@ ReactDOM.render(
                 <GlobalStyle />
                 <ErrorGuard>
                     <Provider store={store}>
-                        <Router />
+                        <div>hii</div>
                     </Provider>
                 </ErrorGuard>
             </>

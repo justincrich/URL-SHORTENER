@@ -1,8 +1,8 @@
 import { combineReducers } from '@reduxjs/toolkit'
-import { reducer as user } from './user'
+import { reducer as urls } from './urls'
 
 export const rootReducer = combineReducers({
-    user,
+    urls,
 })
 
 export type RootState = ReturnType<typeof rootReducer>

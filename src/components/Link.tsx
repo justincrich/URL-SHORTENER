@@ -1,5 +1,4 @@
 import React from 'react'
-import { Link as RRLink } from 'react-router-dom'
 import styled, { css } from 'styled-components'
 import { mixins } from '../styles/mixins'
 import { color } from '../styles/color'
@@ -15,7 +14,7 @@ interface LinkProps {
 export const Link = (props: LinkProps): JSX.Element => {
     const { children, to, className, icon } = props
     return (
-        <Component className={className} to={to}>
+        <Component className={className} href={to}>
             {icon && <Icon iconName={icon} />}
             <Text>{children}</Text>
         </Component>
@@ -32,7 +31,7 @@ export const linkStyles = css`
   justify-content: center;
 `
 
-const Component = styled(RRLink)`
+const Component = styled.a`
     ${linkStyles}
 `
 

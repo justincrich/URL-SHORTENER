@@ -1,5 +1,3 @@
-import color from 'color'
-
 export const transformColorOpacity = (hex: string, opacity: number): string => {
     const mutableHex = hex.replace('#', '')
     const code = [

@@ -4,7 +4,7 @@ module.exports = {
     sourceType: 'module',
   },
   settings: {
-    exclude: ["node_modules", ".vscode", "**/*.test.ts","dist"],
+    exclude: ["node_modules", ".vscode", "**/*.test.ts","dist","lint*.js"],
     include: ["**/*.{ts,tsx,js,jsx}"],
     "import/resolver": {
       node: {
@@ -21,9 +21,9 @@ module.exports = {
     "plugin:prettier/recommended",
   ],
   rules: {
-    
     // NOTE: conflicts with prettier
     "@typescript-eslint/indent": "off",
+    "no-plusplus":0,
     "react/jsx-indent-props": 0,
     "@typescript-eslint/ban-ts-ignore": "off",
     "react/jsx-props-no-spreading": 0,

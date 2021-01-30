@@ -6,6 +6,7 @@ import { button } from '../styles/mixins/button'
 interface ButtonProps {
     disabled?: boolean
     onClick: () => void
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     children: any
 }
 
