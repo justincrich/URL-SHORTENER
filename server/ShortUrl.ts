@@ -17,7 +17,7 @@ export class ShortUrl {
         }
         // NOTE:
         // id = c^n
-        // c = character
+        // c = possible character count
         // n = number of characters
         const characters =
             '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
