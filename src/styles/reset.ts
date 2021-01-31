@@ -1,4 +1,4 @@
-import { css } from 'styled-components'
+import { css } from 'styled-components/macro'
 
 export const reset = css`
     /*see https://necolas.github.io/normalize.css/*/
@@ -45,6 +45,14 @@ export const reset = css`
         border-bottom: none; /* 1 */
         text-decoration: underline; /* 2 */
         text-decoration: underline dotted; /* 2 */
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5 {
+        margin: 0px;
     }
 
     /**

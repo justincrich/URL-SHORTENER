@@ -32,3 +32,5 @@ export const sizing = {
     13: '104px',
     14: '112px',
 } as const
+
+export const BORDER_RADIUS = '5px'

@@ -8,7 +8,7 @@ module.exports = {
     include: ["**/*.{ts,tsx,js,jsx}"],
     "import/resolver": {
       node: {
-        paths: ["src", "data", ".storybook"],
+        paths: ["src", "data"],
         extensions: [".js", ".jsx", ".ts", ".tsx", ".json"]
       }
     },

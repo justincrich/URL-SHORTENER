@@ -1,9 +1,10 @@
 import React from 'react'
-import styled, { css } from 'styled-components'
+import styled, { css } from 'styled-components/macro'
 import { Label } from '../Label'
 import { mixins } from '../../styles/mixins'
 import { color } from '../../styles/color'
 import { isKeyPressEnter } from '../../util/isKeyPressEnter'
+import { BORDER_RADIUS } from '../../styles/mixins/constants'
 
 interface InputProps {
     error?: string
@@ -20,6 +21,7 @@ interface InputProps {
     onEnterPress?: () => void
     isTextArea?: boolean
     kind?: 'textinput' | 'textarea'
+    actionElement?: JSX.Element | JSX.Element[]
 }
 
 export const Input = React.forwardRef(
@@ -41,6 +43,7 @@ export const Input = React.forwardRef(
             type,
             kind = 'textinput',
             onBlur,
+            actionElement,
         } = props
 
         const handleKeyUp = (
@@ -74,11 +77,14 @@ export const Input = React.forwardRef(
                 {label && (
                     <StyledLabel hasError={Boolean(error)}>{label}</StyledLabel>
                 )}
-                {kind === 'textarea' ? (
-                    <TextAreaField {...inputProps} ref={taRef} />
-                ) : (
-                    <TextInputField {...inputProps} ref={inputRef} />
-                )}
+                <Content>
+                    {kind === 'textarea' ? (
+                        <TextAreaField {...inputProps} ref={taRef} />
+                    ) : (
+                        <TextInputField {...inputProps} ref={inputRef} />
+                    )}
+                    {actionElement && <>{actionElement}</>}
+                </Content>
                 {error && <ErrorMessage>{error}</ErrorMessage>}
             </Container>
         )
@@ -108,7 +114,7 @@ const INPUT_STYLE = css<Input>`
     background-color: ${color.background.app};
     border: ${(p) => (p.disabled ? 0 : 1)}px solid
         ${(p) => (p.hasError ? color.status.error : color.border.primary)};
-    border-radius: 5px;
+    border-radius: ${BORDER_RADIUS};
     ${(p) =>
         !p.disabled &&
         css`
@@ -116,6 +122,12 @@ const INPUT_STYLE = css<Input>`
                 border: 1px solid ${color.border.primary};
             }
         `}
+`
+
+const Content = styled.div`
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
 `
 
 export const TextInputField = styled.input<Input>`

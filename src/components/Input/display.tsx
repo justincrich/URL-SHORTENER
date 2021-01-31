@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import styled, { css } from 'styled-components'
+import styled, { css } from 'styled-components/macro'
 import { Label } from '../Label'
 import { mixins } from '../../styles/mixins'
 import { color } from '../../styles/color'

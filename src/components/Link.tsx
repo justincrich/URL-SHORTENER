@@ -1,5 +1,5 @@
 import React from 'react'
-import styled, { css } from 'styled-components'
+import styled, { css } from 'styled-components/macro'
 import { mixins } from '../styles/mixins'
 import { color } from '../styles/color'
 import { Icon as RawIcon, IconsProps } from './Icon/index'
@@ -10,11 +10,12 @@ interface LinkProps {
     to: string
     icon?: IconsProps['iconName']
     className?: string
+    target?: string
 }
 export const Link = (props: LinkProps): JSX.Element => {
-    const { children, to, className, icon } = props
+    const { children, to, className, icon, target } = props
     return (
-        <Component className={className} href={to}>
+        <Component className={className} href={to} target={target}>
             {icon && <Icon iconName={icon} />}
             <Text>{children}</Text>
         </Component>

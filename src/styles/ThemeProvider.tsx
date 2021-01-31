@@ -1,5 +1,5 @@
 import React from 'react'
-import { ThemeProvider as DefaultThemeProvider } from 'styled-components'
+import { ThemeProvider as DefaultThemeProvider } from 'styled-components/macro'
 import { AppTheme } from './theme'
 import { ThemeContext } from './ThemeContext'
 

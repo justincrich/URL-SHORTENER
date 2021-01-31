@@ -20,7 +20,7 @@
 		"prefix": "rfac",
 		"body": [
 			"import React from 'react'",
-			"import styled from 'styled-components'",
+			"import styled from 'styled-components/macro'",
 			"",
 			"interface $1Props {",
 			"    className?: string",

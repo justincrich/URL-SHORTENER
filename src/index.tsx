@@ -1,13 +1,14 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import { Provider } from 'react-redux'
-import { createGlobalStyle } from 'styled-components'
+import { createGlobalStyle } from 'styled-components/macro'
 import * as serviceWorker from './serviceWorker'
 import { store } from './services'
 import { ThemeProvider } from './styles/ThemeProvider'
 import { theme } from './styles/theme'
 import { reset } from './styles/reset'
 import { ErrorGuard } from './components/ErrorGuard'
+import { UrlPage } from './containers/UrlPage'
 
 const GlobalStyle = createGlobalStyle`
   #root{
@@ -26,7 +27,7 @@ ReactDOM.render(
                 <GlobalStyle />
                 <ErrorGuard>
                     <Provider store={store}>
-                        <div>hii</div>
+                        <UrlPage />
                     </Provider>
                 </ErrorGuard>
             </>

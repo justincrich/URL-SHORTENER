@@ -19,9 +19,11 @@ export abstract class ApiClient {
         data?: object
         method: 'get' | 'put' | 'post' | 'delete'
     }): Promise<Result> => {
-        const { path } = request
+        const { path, data, method } = request
         const res = await axios({
-            url: path,
+            url: `http://localhost:3000/${path}`,
+            data,
+            method,
         })
 
         return res.data as Result

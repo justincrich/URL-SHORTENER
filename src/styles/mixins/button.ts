@@ -1,4 +1,4 @@
-import { css } from 'styled-components'
+import { css } from 'styled-components/macro'
 import { ThemedProps } from '../theme'
 
 export const ACTION_OPACITY = 0.5
