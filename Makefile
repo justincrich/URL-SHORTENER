@@ -7,20 +7,22 @@
 # anything else that needs to happen before your server is started
 # for the first time
 setup:
+	@echo "setting up server and client dependencies"
 	yarn install
 # `make server` will be used after `make setup` in order to start
 # an http server process that listens on any unreserved port
 #	of your choice (e.g. 8080). 
 server:
-	echo "starting server on port 5000"
+	@echo "starting server on port 5000"
 	yarn dev-server
 client:
-	echo "starting server on port 3000"
+	@echo "starting server on port 3000"
 	yarn start-client
 start:
-	echo "starting clinet on port 3000 and server on port 5000"
+	@echo "starting clinet on port 3000 and server on port 5000"
 	yarn start
 # `make test` will be used after `make setup` in order to run
 # your test suite.
 test:
+	@echo "running server logic tests"
 	yarn test-server 
