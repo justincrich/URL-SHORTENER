@@ -1,4 +1,4 @@
-import axios, { AxiosError } from 'axios'
+import axios from 'axios'
 
 export type TranslationFn<Value> = (unknown: unknown) => Value
 
