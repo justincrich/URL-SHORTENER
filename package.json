@@ -35,7 +35,7 @@
     "start-client": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "test-server": "jest --watch --config=\"jestServerConfig.js\"",
+    "test-server": "jest --config=\"jestServerConfig.js\"",
     "eject": "react-scripts eject",
     "start": "concurrently \"yarn dev-server\" \"yarn start-client\"",
     "lint": "eslint src/**/*.{ts,tsx}"
