@@ -1,4 +1,4 @@
-import axios from 'axios'
+import axios, { AxiosError } from 'axios'
 
 export type TranslationFn<Value> = (unknown: unknown) => Value
 
@@ -20,13 +20,20 @@ export abstract class ApiClient {
         method: 'get' | 'put' | 'post' | 'delete'
     }): Promise<Result> => {
         const { path, data, method } = request
-        const res = await axios({
-            url: `http://localhost:3000/${path}`,
-            data,
-            method,
-        })
-
-        return res.data as Result
+        try {
+            const res = await axios({
+                url: `http://localhost:3000/${path}`,
+                data,
+                method,
+            })
+            return res.data as Result
+        } catch (e) {
+            if (e.response && e.response.data) {
+                const { data: serverMessage } = e.response
+                throw new Error(serverMessage)
+            }
+            throw e
+        }
     }
 }
 

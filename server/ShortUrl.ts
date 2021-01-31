@@ -1,11 +1,14 @@
 export class ShortUrl {
     private _nextId: number
 
+    private _longDirectory: Record<string, number>
+
     private _db: Array<{ long: string; short: string }>
 
     constructor(db = [], seedId = 1) {
         this._nextId = seedId
         this._db = db
+        this._longDirectory = {}
     }
 
     private _translateIdToShortUrl = (id: number): string => {
@@ -37,6 +40,7 @@ export class ShortUrl {
     private _translateShortUrlToId = (shortUrl: string): number => {
         const url = shortUrl.replace(/^0+(?!$)/, '')
         let id = 0
+
         for (let i = 0; i < url.length; i++) {
             const charCode = url.charCodeAt(i)
             if (
@@ -49,13 +53,13 @@ export class ShortUrl {
                 charCode >= 'a'.charCodeAt(0) &&
                 charCode <= 'z'.charCodeAt(0)
             ) {
-                id = id * 62 + charCode - 'a'.charCodeAt(0) + 26
+                id = id * 62 + charCode - 'a'.charCodeAt(0) + 10
             }
             if (
                 charCode >= 'A'.charCodeAt(0) &&
                 charCode <= 'Z'.charCodeAt(0)
             ) {
-                id = id * 62 + charCode - 'Z'.charCodeAt(0) + 52
+                id = id * 62 + charCode - 'Z'.charCodeAt(0) + 36
             }
         }
         return id
@@ -63,10 +67,12 @@ export class ShortUrl {
 
     generateShortUrl(url: string): string {
         const shortUrl = this._translateIdToShortUrl(this._nextId)
+        if (this._longDirectory[url]) throw new Error('Url Already Shortened')
         this._db[this._nextId] = {
             long: url,
             short: shortUrl,
         }
+        this._longDirectory[url] = this._nextId
         this._nextId += 1
         return shortUrl
     }
@@ -75,7 +81,7 @@ export class ShortUrl {
         const id = this._translateShortUrlToId(shortUrl)
         const { long } = this._db[id] || {}
         if (!long) {
-            throw new Error('Invalid')
+            throw new Error('Short url does not exist')
         }
         return long
     }

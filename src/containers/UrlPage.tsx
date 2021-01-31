@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-one-expression-per-line */
 import React from 'react'
 import styled from 'styled-components/macro'
 import isEqual from 'lodash/isEqual'
@@ -100,9 +101,8 @@ export const UrlPage = (props: UrlPageProps): JSX.Element => {
                         <Content>
                             <Label>
                                 Recently Generated Short Urls (
-                                {recentlyShortenedUrls.length}
-)
-</Label>
+                                {recentlyShortenedUrls.length})
+                            </Label>
                             <UrlContainer>
                                 {recentlyShortenedUrls.map((url, index) => (
                                     <>

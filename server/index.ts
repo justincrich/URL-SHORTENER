@@ -5,6 +5,10 @@ import { ShortUrl } from './ShortUrl'
 
 const app = express()
 app.use(bodyParser.json())
+
+// TODO: pass database reference to persist data between builds
+// TODO: handle errors better to support other edge cases: overflow, server busy, etc
+
 const UrlMachine = new ShortUrl()
 
 app.get<{ shortUrl: string }, string>('/:shortUrl', (req, res) => {
@@ -13,7 +17,8 @@ app.get<{ shortUrl: string }, string>('/:shortUrl', (req, res) => {
         const longUrl = UrlMachine.getLongUrl(shortUrl)
         res.redirect(longUrl)
     } catch (e) {
-        res.status(400).send(`Invalid short url: ${shortUrl}`)
+        res.status(400)
+        res.send(e.message)
     }
 })
 
@@ -22,14 +27,19 @@ app.get<{ shortUrl: string }, string>('/:shortUrl/long', (req, res) => {
     try {
         res.status(200).send(UrlMachine.getLongUrl(shortUrl))
     } catch (e) {
-        res.status(400).send('Invalid short URL')
+        res.status(400)
+        res.send(e.message)
     }
 })
 
 app.put<undefined, string, { url: string }>('/', (req, res): void => {
     const { url } = req.body
-    const shortUrl = UrlMachine.generateShortUrl(url)
-    res.send(shortUrl)
+    try {
+        const shortUrl = UrlMachine.generateShortUrl(url)
+        res.send(shortUrl)
+    } catch (e) {
+        res.status(400).send(e.message)
+    }
 })
 
 app.listen(5000, () => {
